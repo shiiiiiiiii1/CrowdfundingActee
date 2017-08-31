@@ -11,22 +11,22 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ80
 void setup() {
     pixels.begin();
 
-    pixels.setPixelColor(0, 255, 0, 0);
+    pixels.setPixelColor(0, 0, 0, 255);
     pixels.show();
     delay(100);
-    pixels.setPixelColor(1, 255, 255, 0);
+    pixels.setPixelColor(1, 255, 255, 255);
     pixels.show();
     delay(100);
-    pixels.setPixelColor(2, 0, 255, 0);
+    pixels.setPixelColor(2, 0, 0, 255);
     pixels.show();
     delay(100);
-    pixels.setPixelColor(3, 0, 255, 255);
+    pixels.setPixelColor(3, 255, 255, 255);
     pixels.show();
     delay(100);
     pixels.setPixelColor(4, 0, 0, 255);
     pixels.show();
     delay(100);
-    pixels.setPixelColor(5, 255, 0, 255);
+    pixels.setPixelColor(5, 255, 255, 255);
     pixels.show();
 }
 
