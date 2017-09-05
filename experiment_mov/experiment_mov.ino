@@ -1,5 +1,21 @@
-/* ----------------------------------------------------------- */
-#define COLOR5
+/*
+ 使用方法：下記の用途によってコメントアウトするところを変える。
+ 例）普通のActeeとしてランダムに色を投げたい場合は、[ #define RANDOM ]のみコメントアウトを外す。
+ - [#define RANDOM]：普通のActeeとしてランダムに色を変えたい時
+ - [#define COLOR5]：投げた時に青を出したい時
+ - [#define COLOR4]：投げた時に緑を出したい時
+ - [#define COLOR3]：投げた時に黄色を出したい時
+ - [#define COLOR2]：投げた時にオレンジを出したい時
+ - [#define COLOR1]：投げた時にピンクを出したい時
+ - [#define COLOR_1]：ピンクが三回連続で投げられた時のエフェクト
+ - [#define COLOR_2]：オレンジが三回連続で投げられた時のエフェクト
+ - [#define COLOR_3]：黄色が三回連続で投げられた時のエフェクト
+ - [#define COLOR_4]：緑が三回連続で投げられた時のエフェクト
+ - [#define COLOR_5]：青が三回連続で投げられた時のエフェクト
+ - [#define COLOR_6]：前職が一回ずつで投げられた時のエフェクト
+*/
+// #define RANDOM
+// #define COLOR5
 // #define COLOR4
 // #define COLOR3
 // #define COLOR2
@@ -35,6 +51,7 @@ char rotation, before_rotation;   // 回転方向を格納する変数
 char rotation_state;   // 回転回数を格納する変数
 int before_angle;   // 一回前の角度
 
+char count = 0;
 
 #define INTERRUPT_PIN 2  // use pin 2 on Arduino Uno & most boards
 #define LED_PIN 13 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
@@ -100,11 +117,17 @@ void setup() {
     Serial.println(F(")"));
   }
   pinMode(LED_PIN, OUTPUT);
+  pixels.begin();
   setupActee();   // 追記セットアップ
 }
 
 
 void loop() {
+#ifdef RANDOM
+  int a = random(1, 6);   // 1.0~6.0
+  movFlyingColor(a);
+#endif
+
 #ifdef COLOR5
   movFlyingColor(5);
 #endif
@@ -258,7 +281,8 @@ bool stateActee(int before, int now) {
  戻り値：なし
 */
 void changeColor(char color_type) {
-  int delay_time = 240;
+//  int delay_time = 3000;
+  int delay_time = 1000;
   switch(color_type) {
     case 0:
       for (int i = 0; i < NUMPIXELS; i++) {
@@ -268,13 +292,13 @@ void changeColor(char color_type) {
       break;
     case 1:
       for (int i = 0; i < NUMPIXELS; i++) {
-        pixels.setPixelColor(i, 234, 145, 152);
+        pixels.setPixelColor(i, 255, 50, 60);
       }
       pixels.show();
       break;
     case 2:
       for (int i = 0; i < NUMPIXELS; i++) {
-        pixels.setPixelColor(i, 239, 129, 15);
+        pixels.setPixelColor(i, 255, 80, 0);
       }
       pixels.show();
       break;
@@ -292,14 +316,15 @@ void changeColor(char color_type) {
       break;
     case 5:
       for (int i = 0; i < NUMPIXELS; i++) {
-        pixels.setPixelColor(i, 135, 206, 250);
+//        pixels.setPixelColor(i, 135, 206, 250);
+        pixels.setPixelColor(i, 10, 255, 255);
       }
       pixels.show();
       break;
     case -1:
       for (int i = 0; i < NUMPIXELS; i++) {
         if (i % 2 == 0) {
-          pixels.setPixelColor(i, 234, 145, 152);
+          pixels.setPixelColor(i, 255, 50, 60);
         } else {
           pixels.setPixelColor(i, 0, 0, 0);
         }
@@ -321,7 +346,7 @@ void changeColor(char color_type) {
         for (int j = 0; j < NUMPIXELS; j++) {
           pixels.setPixelColor(j, 0, 0, 0);
         }
-        pixels.setPixelColor(i, 239, 129, 15);
+        pixels.setPixelColor(i, 255, 80, 0);
         pixels.show();
         delay(delay_time / NUMPIXELS);
       }
@@ -353,54 +378,6 @@ void changeColor(char color_type) {
       pixels.setPixelColor(5, 251, 211, 28);
       pixels.show();
       delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(5, 0, 0, 0);
-      pixels.setPixelColor(2, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(2, 0, 0, 0);
-      pixels.setPixelColor(4, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(4, 0, 0, 0);
-      pixels.setPixelColor(0, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(0, 0, 0, 0);
-      pixels.setPixelColor(3, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(3, 0, 0, 0);
-      pixels.setPixelColor(5, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(5, 0, 0, 0);
-      pixels.setPixelColor(1, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(1, 0, 0, 0);
-      pixels.setPixelColor(4, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(4, 0, 0, 0);
-      pixels.setPixelColor(0, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(0, 0, 0, 0);
-      pixels.setPixelColor(2, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(2, 0, 0, 0);
-      pixels.setPixelColor(5, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(5, 0, 0, 0);
-      pixels.setPixelColor(1, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
-      pixels.setPixelColor(1, 0, 0, 0);
-      pixels.setPixelColor(3, 251, 211, 28);
-      pixels.show();
-      delay(delay_time / NUMPIXELS);
       break;
     case -4:
       for (int i = 0; i < NUMPIXELS; i++) {
@@ -415,13 +392,13 @@ void changeColor(char color_type) {
     case -5:
       for (int i = 0; i < NUMPIXELS; i++) {
         for (int j = 0; j < NUMPIXELS; j++) {
-          pixels.setPixelColor(j, 135, 206, 250);
+          pixels.setPixelColor(j, 10, 255, 255);
         }
-        pixels.setPixelColor(i, 51, 51, 255);
+        pixels.setPixelColor(i, 20, 20, 255);
         if (i != 5) {
-          pixels.setPixelColor(i+1, 51, 51, 255);
+          pixels.setPixelColor(i+1, 20, 20, 255);
         } else {
-          pixels.setPixelColor(0, 51, 51, 255);
+          pixels.setPixelColor(0, 20, 20, 255);
         }
         pixels.show();
         delay(delay_time / NUMPIXELS);
@@ -469,10 +446,19 @@ void movFlyingColor(char c) {
     if (!flying && flying_now) {   // 投げたら
       flying = true;
       changeColor(c);
+      count++;
     } else if (flying && !flying_now) {   // キャッチしたら
       flying = false;
       rotation = 0;
-      changeColor(0);
+      if (count != 3) {
+        changeColor(0);
+      } else {
+        count = 0;
+        changeColor(c*=-1);
+        changeColor(c*=-1);
+        changeColor(0);
+      }
+
     }
     blinkState = !blinkState;
     digitalWrite(LED_PIN, blinkState);
