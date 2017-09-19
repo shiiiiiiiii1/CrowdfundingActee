@@ -355,27 +355,27 @@ void changeColor(char color_type) {
       for (int i = 0; i < NUMPIXELS; i++) {
         pixels.setPixelColor(i, 0, 0, 0);
       }
-      pixels.setPixelColor(0, 251, 211, 28);
+      pixels.setPixelColor(0, 255, 255, 0);
       pixels.show();
       delay(delay_time / NUMPIXELS);
       pixels.setPixelColor(0, 0, 0, 0);
-      pixels.setPixelColor(2, 251, 211, 28);
+      pixels.setPixelColor(2, 255, 255, 0);
       pixels.show();
       delay(delay_time / NUMPIXELS);
       pixels.setPixelColor(2, 0, 0, 0);
-      pixels.setPixelColor(4, 251, 211, 28);
+      pixels.setPixelColor(4, 255, 255, 0);
       pixels.show();
       delay(delay_time / NUMPIXELS);
       pixels.setPixelColor(4, 0, 0, 0);
-      pixels.setPixelColor(1, 251, 211, 28);
+      pixels.setPixelColor(1, 255, 255, 0);
       pixels.show();
       delay(delay_time / NUMPIXELS);
       pixels.setPixelColor(1, 0, 0, 0);
-      pixels.setPixelColor(3, 251, 211, 28);
+      pixels.setPixelColor(3, 255, 255, 0);
       pixels.show();
       delay(delay_time / NUMPIXELS);
       pixels.setPixelColor(3, 0, 0, 0);
-      pixels.setPixelColor(5, 251, 211, 28);
+      pixels.setPixelColor(5, 255, 255, 0);
       pixels.show();
       delay(delay_time / NUMPIXELS);
       break;
@@ -384,7 +384,7 @@ void changeColor(char color_type) {
         pixels.setPixelColor(i, 0, 0, 0);
       }
       for (int i = 0; i < NUMPIXELS; i++) {
-        pixels.setPixelColor(i, 43, 130, 37);
+        pixels.setPixelColor(i, 0, 255, 0);
         pixels.show();
         delay(delay_time / NUMPIXELS);
       }
