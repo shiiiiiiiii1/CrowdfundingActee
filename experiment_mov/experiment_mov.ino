@@ -212,10 +212,12 @@ void setupActee() {
   pixels.setPixelColor(5, 255, 0, 255);
   pixels.show();
   delay(1000);
-  for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, 100, 100, 100);
-  }
-  pixels.show();
+  #ifdef RANDOM COLOR5 COLOR4 COLOR3 COLOR2 COLOR1 COLOR_1 COLOR_2 COLOR_3 COLOR_4 COLOR_5 COLOR_6
+    for (int i = 0; i < NUMPIXELS; i++) {
+      pixels.setPixelColor(i, 100, 100, 100);
+    }
+    pixels.show();
+  #endif
 }
 
 /*
